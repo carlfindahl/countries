@@ -34,4 +34,9 @@ class HabitListViewModel(private val habitRepository: HabitRepository) : ViewMod
         val habits: List<Habit> = emptyList(),
         val error: String? = null
     )
+
+    sealed class HabitListItem {
+        data class HabitCategory(val title: String) : HabitListItem()
+        data class HabitEntry(val habit: Habit) : HabitListItem()
+    }
 }

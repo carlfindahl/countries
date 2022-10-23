@@ -24,7 +24,7 @@ fun HomeScreen(viewModel: HabitListViewModel = koinViewModel()) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 8.dp)
+            .padding(8.dp)
     ) {
         item {
             AnimatedVisibility(

@@ -22,35 +22,22 @@ fun HabitCard(
             .height(64.dp),
         shape = MaterialTheme.shapes.small
     ) {
-        Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = habit.name,
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.primary,
                 )
 
                 Text(
                     text = habit.type,
                     style = MaterialTheme.typography.bodySmall
-                )
-            }
-
-            Row(horizontalArrangement = Arrangement.SpaceEvenly) {
-                HabitButton(
-                    symbol = "D",
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.padding(2.dp)
-                )
-                HabitButton(
-                    symbol = "H",
-                    color = MaterialTheme.colorScheme.tertiary,
-                    modifier = Modifier.padding(2.dp)
-                )
-                HabitButton(
-                    symbol = "C",
-                    color = MaterialTheme.colorScheme.error,
-                    modifier = Modifier.padding(2.dp)
                 )
             }
         }
@@ -60,7 +47,7 @@ fun HabitCard(
 @Preview
 @Composable
 fun PreviewHabitCard() {
-    VaneTheme {
+    MaterialTheme {
         HabitCard(Habit(0U, "Pushup", "Chore"))
     }
 }
