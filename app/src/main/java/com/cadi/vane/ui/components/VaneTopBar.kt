@@ -1,6 +1,10 @@
 package com.cadi.vane.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -9,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -49,6 +54,17 @@ fun VaneTopBar(
             }
 
             endContent()
+        }
+    }
+}
+
+@Preview("Light Mode", showBackground = true)
+@Preview("Dark Mode", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun PreviewVaneTopBar() {
+    MaterialTheme {
+        VaneTopBar(name = "Main", message = "You are not done yet!") {
+            Icon(imageVector = Icons.Filled.Add, contentDescription = "Add")
         }
     }
 }
