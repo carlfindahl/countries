@@ -27,6 +27,7 @@ import com.cadi.vane.ui.components.ErrorBox
 import com.cadi.vane.ui.components.HabitCard
 import com.cadi.vane.ui.components.VaneBottomBar
 import com.cadi.vane.ui.components.VaneTopBar
+import com.cadi.vane.ui.screens.HomeScreen
 import com.cadi.vane.ui.theme.VaneTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -55,36 +56,10 @@ class MainActivity : ComponentActivity() {
                         }
                     }) {
                     Column(modifier = Modifier.padding(it)) {
-                        MainScreen()
+                        HomeScreen()
                     }
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun MainScreen(viewModel: HabitListViewModel = koinViewModel()) {
-
-    val state by viewModel.viewState.collectAsState()
-
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 8.dp)
-    ) {
-        item {
-            AnimatedVisibility(
-                visible = state.error != null,
-                enter = expandVertically(expandFrom = Alignment.Top) { 0 } + fadeIn(),
-                exit = shrinkVertically(shrinkTowards = Alignment.Top) + fadeOut()
-            ) {
-                ErrorBox(error = state.error ?: "", onDismiss = { viewModel.clearError() })
-            }
-        }
-
-        items(state.habits) {
-            HabitCard(habit = it, modifier = Modifier.padding(vertical = 2.dp))
         }
     }
 }
