@@ -1,6 +1,7 @@
 buildscript {
     ext {
         compose_version = '1.2.1'
+        nav_version = '2.5.2'
         koin_version = '3.2.2'
         retrofit_version = '2.9.0'
     }

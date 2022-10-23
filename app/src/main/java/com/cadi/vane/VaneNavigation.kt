@@ -12,9 +12,8 @@ object VaneNavigation {
         val name: String,
         val defaultIcon: ImageVector,
         val selectedIcon: ImageVector,
-        val selected: Boolean,
     ) {
-        fun getIcon(): ImageVector {
+        fun getIcon(selected: Boolean): ImageVector {
             return if (selected) {
                 selectedIcon
             } else {
@@ -31,16 +30,14 @@ object VaneNavigation {
 
     val bottomBarDestinations = listOf(
         BottomBarDestination(
-            "Home",
+            Routes.VANE_LIST,
             Icons.Outlined.Home,
             Icons.Filled.Home,
-            true
         ),
         BottomBarDestination(
-            "Profile",
+            Routes.PROFILE,
             Icons.Outlined.Person,
             Icons.Filled.Person,
-            false
         ),
     )
 }
