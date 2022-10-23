@@ -1,11 +1,12 @@
 @file:OptIn(ExperimentalSerializationApi::class)
 
-package com.cadi.vane.dimodules
+package com.cadi.vane
 
 import com.cadi.vane.features.HabitNetworkRepository
 import com.cadi.vane.features.HabitRepository
 import com.cadi.vane.features.HabitListViewModel
 import com.cadi.vane.network.HabitsApiService
+import com.cadi.vane.network.MockHabitApiService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -29,5 +30,5 @@ val networkModule = module {
             .build()
     }
 
-    single<HabitsApiService> { get<Retrofit>().create() }
+    single<HabitsApiService> { MockHabitApiService() /*get<Retrofit>().create()*/ }
 }

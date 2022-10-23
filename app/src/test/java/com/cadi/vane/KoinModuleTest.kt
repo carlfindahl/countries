@@ -1,7 +1,5 @@
 package com.cadi.vane
 
-import com.cadi.vane.dimodules.habitModule
-import com.cadi.vane.dimodules.networkModule
 import org.junit.Rule
 import org.junit.Test
 import org.koin.test.KoinTest
