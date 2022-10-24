@@ -1,6 +1,9 @@
 package com.cadi.vane.network
 
 import com.cadi.vane.data.model.Habit
+import com.cadi.vane.data.model.HabitInterval
+import com.cadi.vane.data.model.HabitIntervalUnit
+import com.cadi.vane.data.model.HabitWorkout
 import retrofit2.http.GET
 
 interface HabitsApiService {
@@ -14,20 +17,18 @@ interface HabitsApiService {
 class MockHabitApiService : HabitsApiService {
     override suspend fun getAllHabits(): List<Habit> {
         return listOf(
-            Habit(0U, "Vakse Gulv", "Boolean"),
-            Habit(1U, "Pushups", "Sets"),
-            Habit(2U, "Rydde Hus", "Timed"),
-            Habit(3U, "Runke Litlits", "Count"),
+            Habit.TaskHabit(0U, "Vakse Gulv", HabitInterval(1, HabitIntervalUnit.WEEK), false),
+            Habit.SetHabit(1U, "Pushups", HabitInterval(1, HabitIntervalUnit.DAY), HabitWorkout(0, 3, emptyList())),
+            Habit.TimedHabit(2U, "Rydde Hus",HabitInterval(2, HabitIntervalUnit.DAY), 0L, 20L),
         )
     }
 
     override suspend fun getHabit(habit: UInt): Habit {
         return when (habit) {
-            0U -> Habit(0U, "Vakse Gulv", "Boolean")
-            1U -> Habit(1U, "Pushups", "Sets")
-            2U -> Habit(2U, "Rydde Hus", "Timed")
-            3U -> Habit(3U, "Runke Litlits", "Count")
-            else -> Habit(999U, "Fake", "Error")
+            0U ->Habit.TaskHabit(0U, "Vakse Gulv", HabitInterval(1, HabitIntervalUnit.WEEK), false)
+            1U -> Habit.SetHabit(1U, "Pushups", HabitInterval(1, HabitIntervalUnit.DAY), HabitWorkout(0, 3, emptyList()))
+            2U ->  Habit.TimedHabit(2U, "Rydde Hus",HabitInterval(2, HabitIntervalUnit.DAY), 0L, 20L)
+            else -> Habit.TimedHabit(2U, "Rydde Hus",HabitInterval(2, HabitIntervalUnit.DAY), 0L, 20L)
         }
     }
 }

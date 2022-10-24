@@ -9,12 +9,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cadi.vane.data.model.Habit
+import com.cadi.vane.data.model.HabitInterval
+import com.cadi.vane.data.model.HabitIntervalUnit
 import com.cadi.vane.ui.theme.VaneTheme
 
 @Composable
 fun HabitCard(
     habit: Habit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    endContent: @Composable () -> Unit = {}
 ) {
     Card(
         modifier = modifier
@@ -40,6 +43,8 @@ fun HabitCard(
                     style = MaterialTheme.typography.bodySmall
                 )
             }
+
+            endContent()
         }
     }
 }
@@ -48,6 +53,6 @@ fun HabitCard(
 @Composable
 fun PreviewHabitCard() {
     MaterialTheme {
-        HabitCard(Habit(0U, "Pushup", "Chore"))
+        HabitCard(Habit.TimedHabit(2U, "Rydde Hus", HabitInterval(2, HabitIntervalUnit.DAY), 0L, 20L))
     }
 }
