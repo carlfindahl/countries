@@ -29,7 +29,7 @@ fun HabitCard(
             modifier = Modifier
                 .padding(8.dp)
                 .fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = CenterVertically
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
@@ -53,6 +53,14 @@ fun HabitCard(
 @Composable
 fun PreviewHabitCard() {
     MaterialTheme {
-        HabitCard(Habit.TimedHabit(2U, "Rydde Hus", HabitInterval(2, HabitIntervalUnit.DAY), 0L, 20L))
+        HabitCard(
+            Habit.TimedHabit(
+                2U,
+                "Rydde Hus",
+                HabitInterval(2, HabitIntervalUnit.DAY),
+                0L,
+                20L
+            )
+        )
     }
 }

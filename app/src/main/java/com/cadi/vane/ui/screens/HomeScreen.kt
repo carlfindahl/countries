@@ -17,10 +17,10 @@ import com.cadi.vane.ui.components.HabitCard
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeScreen(viewModel: HabitListViewModel = koinViewModel()) {
-
-    val state by viewModel.viewState.collectAsState()
-
+fun HomeScreen(
+    state: HabitListViewModel.ViewState,
+    onClearError: () -> Unit
+) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -32,7 +32,7 @@ fun HomeScreen(viewModel: HabitListViewModel = koinViewModel()) {
                 enter = expandVertically(expandFrom = Alignment.Top) { 0 } + fadeIn(),
                 exit = shrinkVertically(shrinkTowards = Alignment.Top) + fadeOut()
             ) {
-                ErrorBox(error = state.error ?: "", onDismiss = { viewModel.clearError() })
+                ErrorBox(error = state.error ?: "", onDismiss = onClearError)
             }
         }
 

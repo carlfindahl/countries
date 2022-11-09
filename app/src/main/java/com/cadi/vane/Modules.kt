@@ -2,8 +2,8 @@
 
 package com.cadi.vane
 
-import com.cadi.vane.features.HabitNetworkRepository
-import com.cadi.vane.features.HabitRepository
+import com.cadi.vane.data.HabitNetworkRepository
+import com.cadi.vane.data.HabitRepository
 import com.cadi.vane.features.HabitListViewModel
 import com.cadi.vane.network.HabitsApiService
 import com.cadi.vane.network.MockHabitApiService
@@ -15,7 +15,6 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.create
 
 val habitModule = module {
     single<HabitRepository> { HabitNetworkRepository(habitsApiService = get()) }

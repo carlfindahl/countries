@@ -1,4 +1,4 @@
-package com.cadi.vane.features
+package com.cadi.vane.data
 
 import com.cadi.vane.data.model.Habit
 import com.cadi.vane.network.HabitsApiService

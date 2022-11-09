@@ -2,6 +2,7 @@ package com.cadi.vane.features
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cadi.vane.data.HabitRepository
 import com.cadi.vane.data.model.Habit
 import com.cadi.vane.network.util.doOnFailure
 import com.cadi.vane.network.util.doOnSuccess
