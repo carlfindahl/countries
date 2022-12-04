@@ -1,4 +1,4 @@
-package com.cadi.vane
+package com.cadi.vane.ui.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -7,7 +7,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.ui.graphics.vector.ImageVector
 
-object VaneNavigation {
+object BottomBarDestinations {
     data class BottomBarDestination(
         val name: String,
         val defaultIcon: ImageVector,

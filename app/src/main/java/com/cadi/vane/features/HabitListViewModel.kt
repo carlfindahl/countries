@@ -18,10 +18,16 @@ class HabitListViewModel(private val habitRepository: HabitRepository) : ViewMod
         getAllHabits()
     }
 
-    fun getAllHabits() = viewModelScope.launch {
+    private fun getAllHabits() = viewModelScope.launch {
         habitRepository.getAllHabits()
             .doOnSuccess {
-                _viewState.value = _viewState.value.copy(habits = it)
+                _viewState.value =
+                    _viewState.value.copy(habits = it
+                        .map { entry -> HabitListItem.HabitEntry(entry) }
+                        .groupBy { element -> element.habit.type }
+                        .flatMap { category ->
+                            listOf(HabitListItem.HabitCategory(category.key)) + category.value
+                        })
             }.doOnFailure {
                 _viewState.value = _viewState.value.copy(error = it)
             }
@@ -32,12 +38,12 @@ class HabitListViewModel(private val habitRepository: HabitRepository) : ViewMod
     }
 
     data class ViewState(
-        val habits: List<Habit> = emptyList(),
+        val habits: List<HabitListItem> = emptyList(),
         val error: String? = null
     )
+}
 
-    sealed class HabitListItem {
-        data class HabitCategory(val title: String) : HabitListItem()
-        data class HabitEntry(val habit: Habit) : HabitListItem()
-    }
+sealed class HabitListItem {
+    data class HabitCategory(val title: String) : HabitListItem()
+    data class HabitEntry(val habit: Habit) : HabitListItem()
 }

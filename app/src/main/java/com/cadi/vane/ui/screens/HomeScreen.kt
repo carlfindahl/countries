@@ -13,6 +13,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
+import com.cadi.vane.features.HabitListItem
 import com.cadi.vane.features.HabitListViewModel
 import com.cadi.vane.ui.components.ErrorBox
 import com.cadi.vane.ui.components.HabitCard
@@ -47,7 +50,18 @@ fun HomeScreen(
         }
 
         items(state.habits) {
-            HabitCard(habit = it, modifier = Modifier.padding(vertical = 2.dp))
+            when (it) {
+                is HabitListItem.HabitCategory -> Text(
+                    text = it.title,
+                    style = MaterialTheme.typography.titleSmall
+                )
+
+                is HabitListItem.HabitEntry -> HabitCard(
+                    habit = it.habit,
+                    modifier = Modifier.padding(vertical = 2.dp)
+                )
+            }
+
         }
     }
 }

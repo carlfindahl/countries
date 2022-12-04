@@ -8,22 +8,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.cadi.vane.VaneNavigation
-import com.cadi.vane.features.HabitListViewModel
+import com.cadi.vane.ui.navigation.BottomBarDestinations
 import com.cadi.vane.ui.components.VaneBottomBar
 import com.cadi.vane.ui.components.VaneTopBar
-import com.cadi.vane.ui.screens.HomeScreen
+import com.cadi.vane.ui.navigation.homeScreen
 import com.cadi.vane.ui.screens.ProfileScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun VaneMainNavigation(navController: NavHostController) {
@@ -43,7 +40,7 @@ fun VaneMainNavigation(navController: NavHostController) {
                 val backStack by navController.currentBackStackEntryAsState()
                 val currentDestination = backStack?.destination
 
-                VaneNavigation.bottomBarDestinations.forEach { destination ->
+                BottomBarDestinations.bottomBarDestinations.forEach { destination ->
                     val selected =
                         currentDestination?.hierarchy?.any { it.route == destination.name } == true
 
@@ -66,18 +63,14 @@ fun VaneMainNavigation(navController: NavHostController) {
         }) {
         AnimatedNavHost(
             navController,
-            startDestination = VaneNavigation.Routes.VANE_LIST,
+            startDestination = BottomBarDestinations.Routes.VANE_LIST,
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() },
             modifier = Modifier.padding(it)
         ) {
-            composable(VaneNavigation.Routes.VANE_LIST) {
-                val viewModel: HabitListViewModel = koinViewModel()
-                val viewState by viewModel.viewState.collectAsState()
-                HomeScreen(viewState, viewModel::clearError)
-            }
+            homeScreen {  }
 
-            composable(VaneNavigation.Routes.PROFILE) {
+            composable(BottomBarDestinations.Routes.PROFILE) {
                 ProfileScreen()
             }
         }
