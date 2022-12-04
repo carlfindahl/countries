@@ -1,4 +1,7 @@
 package com.cadi.vane.data.model
 
-class VaneTopBarState {
+sealed class VaneTopBarState {
+    object Hidden : VaneTopBarState()
+
+    data class BasicSlogan(val title: String, val slogan: String) : VaneTopBarState()
 }
