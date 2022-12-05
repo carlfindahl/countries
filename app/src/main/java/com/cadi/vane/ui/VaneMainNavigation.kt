@@ -38,16 +38,22 @@ fun VaneMainNavigation(navController: NavHostController) {
 
         Scaffold(
             topBar = {
-                when (val state = appBarState.topBarState) {
+                AnimatedVisibility(
+                    visible = appBarState.topBarState !is CountryTopBarState.Style.Hidden,
+                    enter = slideInVertically { 0 },
+                    exit = slideOutVertically { it }
+                ) {
+                    when (val state = appBarState.topBarState) {
 
-                    is CountryTopBarState.Style.Basic -> VaneTopBar(name = state.title, null)
+                        is CountryTopBarState.Style.Basic -> VaneTopBar(name = state.title, null)
 
-                    is CountryTopBarState.Style.BasicSlogan -> VaneTopBar(
-                        name = state.title,
-                        message = state.slogan
-                    )
+                        is CountryTopBarState.Style.BasicSlogan -> VaneTopBar(
+                            name = state.title,
+                            message = state.slogan
+                        )
 
-                    CountryTopBarState.Style.Hidden -> {}
+                        CountryTopBarState.Style.Hidden -> {}
+                    }
                 }
             },
             bottomBar = {
