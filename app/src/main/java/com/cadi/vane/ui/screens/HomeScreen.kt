@@ -1,6 +1,10 @@
 package com.cadi.vane.ui.screens
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,18 +12,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import com.cadi.vane.features.HabitListItem
+import com.cadi.vane.data.model.Habit
 import com.cadi.vane.features.HabitListViewModel
 import com.cadi.vane.ui.components.ErrorBox
 import com.cadi.vane.ui.components.HabitCard
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HomeScreen(
@@ -51,15 +50,20 @@ fun HomeScreen(
 
         items(state.habits) {
             when (it) {
-                is HabitListItem.HabitCategory -> Text(
-                    text = it.title,
-                    style = MaterialTheme.typography.titleSmall
-                )
+                is Habit.SetHabit -> {
 
-                is HabitListItem.HabitEntry -> HabitCard(
-                    habit = it.habit,
-                    modifier = Modifier.padding(vertical = 2.dp)
-                )
+                }
+
+                is Habit.TaskHabit -> {
+                    HabitCard(
+                        habit = it,
+                        modifier = Modifier.padding(vertical = 2.dp)
+                    )
+                }
+
+                is Habit.TimedHabit -> {
+
+                }
             }
 
         }
