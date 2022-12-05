@@ -11,8 +11,8 @@ import kotlinx.coroutines.launch
 
 class CountryListViewModel(private val countryRepository: CountryRepository) : ViewModel() {
 
-    private var _viewState = MutableStateFlow(ViewState())
-    val viewState = _viewState
+    private var _uiState = MutableStateFlow(UiState())
+    val uiState = _uiState
 
     init {
         getAllCountries()
@@ -21,18 +21,18 @@ class CountryListViewModel(private val countryRepository: CountryRepository) : V
     private fun getAllCountries() = viewModelScope.launch {
         countryRepository.getAllCountries()
             .doOnSuccess {
-                _viewState.value =
-                    _viewState.value.copy(habits = it)
+                _uiState.value =
+                    _uiState.value.copy(habits = it)
             }.doOnFailure {
-                _viewState.value = _viewState.value.copy(error = it)
+                _uiState.value = _uiState.value.copy(error = it)
             }
     }
 
     fun clearError() {
-        _viewState.value = _viewState.value.copy(error = null)
+        _uiState.value = _uiState.value.copy(error = null)
     }
 
-    data class ViewState(
+    data class UiState(
         val habits: List<Country> = emptyList(),
         val error: String? = null
     )

@@ -20,7 +20,7 @@ import com.cadi.vane.ui.components.ErrorBox
 
 @Composable
 fun HomeScreen(
-    state: CountryListViewModel.ViewState,
+    state: CountryListViewModel.UiState,
     onClickCountry: (String) -> Unit,
     onClearError: () -> Unit
 ) {

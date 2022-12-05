@@ -17,7 +17,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.cadi.vane.ui.navigation.BottomBarDestinations
 import com.cadi.vane.ui.components.VaneBottomBar
 import com.cadi.vane.ui.components.VaneTopBar
+import com.cadi.vane.ui.navigation.countryDetailsScreen
 import com.cadi.vane.ui.navigation.homeScreen
+import com.cadi.vane.ui.navigation.navigateToCountryDetailsScreen
 import com.cadi.vane.ui.screens.ProfileScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
@@ -68,7 +70,15 @@ fun VaneMainNavigation(navController: NavHostController) {
             exitTransition = { fadeOut() },
             modifier = Modifier.padding(it)
         ) {
-            homeScreen { route -> navController.navigate("country/$route") }
+            homeScreen { countryId ->
+                navController.navigateToCountryDetailsScreen(countryId)
+            }
+
+            countryDetailsScreen { countryId ->
+                navController.navigateToCountryDetailsScreen(
+                    countryId
+                )
+            }
 
             composable(BottomBarDestinations.Routes.PROFILE) {
                 ProfileScreen()

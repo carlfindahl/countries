@@ -4,6 +4,7 @@ package com.cadi.vane
 
 import com.cadi.vane.data.CountryNetworkRepository
 import com.cadi.vane.data.CountryRepository
+import com.cadi.vane.features.CountryDetailViewModel
 import com.cadi.vane.features.CountryListViewModel
 import com.cadi.vane.network.CountryApiService
 import com.cadi.vane.network.MockCountryApiService
@@ -20,6 +21,7 @@ import retrofit2.Retrofit
 val habitModule = module {
     single<CountryRepository> { CountryNetworkRepository(habitsApiService = get()) }
     viewModel { CountryListViewModel(get()) }
+    viewModel { CountryDetailViewModel(get(), get()) }
 }
 
 @OptIn(ExperimentalSerializationApi::class)
