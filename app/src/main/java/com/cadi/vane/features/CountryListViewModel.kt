@@ -2,24 +2,24 @@ package com.cadi.vane.features
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cadi.vane.data.HabitRepository
-import com.cadi.vane.data.model.Habit
+import com.cadi.vane.data.CountryRepository
+import com.cadi.vane.data.model.Country
 import com.cadi.vane.network.util.doOnFailure
 import com.cadi.vane.network.util.doOnSuccess
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class HabitListViewModel(private val habitRepository: HabitRepository) : ViewModel() {
+class CountryListViewModel(private val countryRepository: CountryRepository) : ViewModel() {
 
     private var _viewState = MutableStateFlow(ViewState())
     val viewState = _viewState
 
     init {
-        getAllHabits()
+        getAllCountries()
     }
 
-    private fun getAllHabits() = viewModelScope.launch {
-        habitRepository.getAllHabits()
+    private fun getAllCountries() = viewModelScope.launch {
+        countryRepository.getAllCountries()
             .doOnSuccess {
                 _viewState.value =
                     _viewState.value.copy(habits = it)
@@ -33,7 +33,7 @@ class HabitListViewModel(private val habitRepository: HabitRepository) : ViewMod
     }
 
     data class ViewState(
-        val habits: List<Habit> = emptyList(),
+        val habits: List<Country> = emptyList(),
         val error: String? = null
     )
 }

@@ -1,5 +1,6 @@
 package com.cadi.vane.ui.components
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,15 +15,14 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.cadi.vane.data.model.Habit
-import com.cadi.vane.data.model.HabitInterval
-import com.cadi.vane.data.model.HabitIntervalUnit
+import coil.compose.AsyncImage
+import com.cadi.vane.data.model.Country
+import com.cadi.vane.data.model.CountryFlags
 
 @Composable
-fun HabitCard(
-    habit: Habit,
+fun CountryCard(
+    country: Country,
     modifier: Modifier = Modifier,
-    endContent: @Composable () -> Unit = {}
 ) {
     Card(
         modifier = modifier
@@ -33,23 +33,18 @@ fun HabitCard(
         Row(
             modifier = Modifier
                 .padding(8.dp)
-                .fillMaxSize(),
+                .fillMaxWidth()
+                .height(80.dp),
             verticalAlignment = CenterVertically
         ) {
-            Column(modifier = Modifier.weight(1f)) {
+            Box {
+                AsyncImage(model = country.flags.png, contentDescription = "Flag")
                 Text(
-                    text = habit.name,
+                    text = country.name,
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.primary,
                 )
-
-                Text(
-                    text = habit.type,
-                    style = MaterialTheme.typography.bodySmall
-                )
             }
-
-            endContent()
         }
     }
 }
@@ -58,13 +53,15 @@ fun HabitCard(
 @Composable
 fun PreviewHabitCard() {
     MaterialTheme {
-        HabitCard(
-            Habit.TimedHabit(
-                2U,
-                "Rydde Hus",
-                HabitInterval(2, HabitIntervalUnit.DAY),
-                0L,
-                20L
+        CountryCard(
+            Country(
+                id = "NOR",
+                name = "Norway",
+                demonym = "Norwegian",
+                capital = "Oslo",
+                population = 500000,
+                flags = CountryFlags(""),
+                borders = listOf("SWE")
             )
         )
     }

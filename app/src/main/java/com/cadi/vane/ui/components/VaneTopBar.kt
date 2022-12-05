@@ -38,7 +38,7 @@ fun VaneTopBar(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "Home",
+                    text = name,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Vane</string>
+
+    <string name="network_error_generic">Network error.</string>
+    <string name="network_error_io">Data parsing error.</string>
+    <string name="network_error_null">Data not available.</string>
+    <string name="network_error_memory">Out of memory.</string>
+
 </resources>

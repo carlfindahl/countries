@@ -1,25 +1,25 @@
 package com.cadi.vane.data
 
-import com.cadi.vane.data.model.Habit
-import com.cadi.vane.network.HabitsApiService
+import com.cadi.vane.data.model.Country
+import com.cadi.vane.network.CountryApiService
 import com.cadi.vane.network.util.NetResult
 import com.cadi.vane.network.util.doNetwork
 
-interface HabitRepository {
-    suspend fun getAllHabits(): NetResult<List<Habit>, String>
+interface CountryRepository {
+    suspend fun getAllCountries(): NetResult<List<Country>, String>
 
-    suspend fun getHabit(id: UInt): NetResult<Habit, String>
+    suspend fun getCountry(id: String): NetResult<Country?, String>
 }
 
-class HabitNetworkRepository(
-    private val habitsApiService: HabitsApiService
-) : HabitRepository {
+class CountryNetworkRepository(
+    private val habitsApiService: CountryApiService
+) : CountryRepository {
 
-    override suspend fun getAllHabits(): NetResult<List<Habit>, String> {
-        return doNetwork { habitsApiService.getAllHabits() }
+    override suspend fun getAllCountries(): NetResult<List<Country>, String> {
+        return doNetwork { habitsApiService.getAllCountries() }
     }
 
-    override suspend fun getHabit(id: UInt): NetResult<Habit, String> {
-        return doNetwork { habitsApiService.getHabit(id) }
+    override suspend fun getCountry(id: String): NetResult<Country?, String> {
+        return doNetwork { habitsApiService.getCountry(id).firstOrNull() }
     }
 }

@@ -23,14 +23,14 @@ object BottomBarDestinations {
     }
 
     object Routes {
-        const val VANE_LIST = "home"
-        const val VANE_INFO = "vaneinfo"
+        const val COUNTRY_HOME = "country_home"
+        const val COUNTRY_ABOUT = "country_about"
         const val PROFILE = "profile"
     }
 
     val bottomBarDestinations = listOf(
         BottomBarDestination(
-            Routes.VANE_LIST,
+            Routes.COUNTRY_HOME,
             Icons.Outlined.Home,
             Icons.Filled.Home,
         ),

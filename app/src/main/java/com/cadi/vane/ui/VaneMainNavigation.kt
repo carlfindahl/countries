@@ -32,7 +32,7 @@ fun VaneMainNavigation(navController: NavHostController) {
 
             VaneTopBar(
                 name = title,
-                message = "Do your thing 3 more times so it's not in Vane!"
+                message = "Look at the data about these countries!"
             )
         },
         bottomBar = {
@@ -63,12 +63,12 @@ fun VaneMainNavigation(navController: NavHostController) {
         }) {
         AnimatedNavHost(
             navController,
-            startDestination = BottomBarDestinations.Routes.VANE_LIST,
+            startDestination = BottomBarDestinations.Routes.COUNTRY_HOME,
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() },
             modifier = Modifier.padding(it)
         ) {
-            homeScreen {  }
+            homeScreen { route -> navController.navigate("country/$route") }
 
             composable(BottomBarDestinations.Routes.PROFILE) {
                 ProfileScreen()
