@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             VaneTheme {
-                val navController = rememberNavController()
+                val navController = rememberAnimatedNavController()
                 VaneMainNavigation(navController = navController)
             }
         }

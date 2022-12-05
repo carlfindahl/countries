@@ -23,7 +23,7 @@ object BottomBarDestinations {
     }
 
     object Routes {
-        const val VANE_LIST = "vanelist"
+        const val VANE_LIST = "home"
         const val VANE_INFO = "vaneinfo"
         const val PROFILE = "profile"
     }
