@@ -22,7 +22,10 @@ fun NavGraphBuilder.homeScreen(
         val viewModel: CountryListViewModel = koinViewModel()
         val uiState by viewModel.uiState.collectAsState()
 
-        LocalAppBarState.current.state = CountryTopBarState.Style.BasicSlogan("Home", "Click a country to see more info! :)")
+        LocalAppBarState.current.apply {
+            topBarState = CountryTopBarState.Style.BasicSlogan("Home", "Click a country to see more info! :)")
+            bottomBarState = true
+        }
 
         HomeScreen(
             state = uiState,
@@ -40,7 +43,10 @@ fun NavGraphBuilder.countryDetailsScreen(
         val uiState by viewModel.viewState.collectAsState()
 
         uiState.country?.let {
-            LocalAppBarState.current.state = CountryTopBarState.Style.BasicSlogan(it.name, it.capital)
+            LocalAppBarState.current.apply {
+                topBarState = CountryTopBarState.Style.BasicSlogan(it.name, it.capital)
+                bottomBarState = false
+            }
         }
 
         CountryDetailScreen(

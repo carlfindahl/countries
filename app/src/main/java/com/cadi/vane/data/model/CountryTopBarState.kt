@@ -8,7 +8,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 
 class CountryTopBarState {
-    var state  by mutableStateOf<Style>(Style.Hidden)
+    var topBarState  by mutableStateOf<Style>(Style.Hidden)
+
+    // True for visible, otherwise false
+    var bottomBarState by mutableStateOf<Boolean>(true)
+
     sealed class Style {
         object Hidden : Style()
 

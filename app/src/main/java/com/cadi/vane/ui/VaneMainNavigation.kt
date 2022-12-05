@@ -1,13 +1,15 @@
 package com.cadi.vane.ui
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -36,7 +38,7 @@ fun VaneMainNavigation(navController: NavHostController) {
 
         Scaffold(
             topBar = {
-                when (val state = appBarState.state) {
+                when (val state = appBarState.topBarState) {
 
                     is CountryTopBarState.Style.Basic -> VaneTopBar(name = state.title, null)
 
@@ -49,28 +51,34 @@ fun VaneMainNavigation(navController: NavHostController) {
                 }
             },
             bottomBar = {
-                VaneBottomBar(containerColor = MaterialTheme.colorScheme.secondaryContainer) {
-                    val backStack by navController.currentBackStackEntryAsState()
-                    val currentDestination = backStack?.destination
+                AnimatedVisibility(
+                    visible = appBarState.bottomBarState,
+                    enter = slideInVertically { it },
+                    exit = slideOutVertically { it }
+                ) {
+                    VaneBottomBar(containerColor = MaterialTheme.colorScheme.secondaryContainer) {
+                        val backStack by navController.currentBackStackEntryAsState()
+                        val currentDestination = backStack?.destination
 
-                    BottomBarDestinations.bottomBarDestinations.forEach { destination ->
-                        val selected =
-                            currentDestination?.hierarchy?.any { it.route == destination.name } == true
+                        BottomBarDestinations.bottomBarDestinations.forEach { destination ->
+                            val selected =
+                                currentDestination?.hierarchy?.any { it.route == destination.name } == true
 
-                        NavigationBarItem(
-                            selected = selected,
-                            onClick = {
-                                navController.navigate(destination.name) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = true
+                            NavigationBarItem(
+                                selected = selected,
+                                onClick = {
+                                    navController.navigate(destination.name) {
+                                        popUpTo(navController.graph.findStartDestination().id) {
+                                            saveState = true
+                                        }
+                                        launchSingleTop = true
+                                        restoreState = true
                                     }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                            },
-                            icon = {
-                                Icon(imageVector = destination.getIcon(selected), null)
-                            })
+                                },
+                                icon = {
+                                    Icon(imageVector = destination.getIcon(selected), null)
+                                })
+                        }
                     }
                 }
             }) {
@@ -94,7 +102,8 @@ fun VaneMainNavigation(navController: NavHostController) {
                 }
 
                 composable(BottomBarDestinations.Routes.PROFILE) {
-                    appBarState.state = CountryTopBarState.Style.Basic("Profile")
+                    appBarState.topBarState = CountryTopBarState.Style.Basic("Profile")
+                    appBarState.bottomBarState = true
                     ProfileScreen()
                 }
             }
