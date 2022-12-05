@@ -8,10 +8,10 @@ data class Country(
     @SerialName("alpha3Code") val id: String,
     val name: String,
     val demonym: String,
-    val capital: String,
+    val capital: String = "Nothing",
     val population: Int,
     val flags: CountryFlags,
-    val borders: List<String>
+    val borders: List<String>? = null
 )
 
 @Serializable

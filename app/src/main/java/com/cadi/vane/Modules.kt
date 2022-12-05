@@ -16,6 +16,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.create
 
 val habitModule = module {
     single<CountryRepository> { CountryNetworkRepository(habitsApiService = get()) }
@@ -28,9 +29,11 @@ val networkModule = module {
     singleOf<Retrofit> {
         Retrofit.Builder()
             .baseUrl("https://restcountries.com/")
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .addConverterFactory(Json {
+                ignoreUnknownKeys = true
+            }.asConverterFactory("application/json".toMediaType()))
             .build()
     }
 
-    single<CountryApiService> { MockCountryApiService() /*get<Retrofit>().create()*/ }
+    single<CountryApiService> { get<Retrofit>().create() }
 }

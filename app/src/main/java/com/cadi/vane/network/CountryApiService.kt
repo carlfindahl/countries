@@ -3,13 +3,14 @@ package com.cadi.vane.network
 import com.cadi.vane.data.model.Country
 import com.cadi.vane.data.model.CountryFlags
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface CountryApiService {
     @GET("v2/all")
     suspend fun getAllCountries(): List<Country>
 
     @GET("v2/name/{name}")
-    suspend fun getCountry(name: String): List<Country>
+    suspend fun getCountry(@Path("name") name: String): List<Country>
 }
 
 /**

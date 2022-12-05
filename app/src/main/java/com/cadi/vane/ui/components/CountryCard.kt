@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,7 +31,7 @@ fun CountryCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val gradient = Brush.verticalGradient(listOf(Color.Transparent, Color.Black.copy(alpha = 0.6f)))
+    val gradient = Brush.verticalGradient(listOf(Color.Transparent, Color.Black.copy(alpha = 0.9f)))
 
     Surface(
         shape = MaterialTheme.shapes.small,
@@ -38,21 +39,20 @@ fun CountryCard(
         onClick = onClick,
     ) {
         Box(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().aspectRatio(1.67f),
             contentAlignment = Alignment.BottomCenter
         ) {
 
             AsyncImage(
                 model = country.flags.png,
                 contentDescription = "Flag",
-                contentScale = ContentScale.FillWidth,
+                contentScale = ContentScale.FillBounds,
                 modifier = Modifier.fillMaxSize()
             )
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(60.dp)
                     .background(gradient),
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.Center

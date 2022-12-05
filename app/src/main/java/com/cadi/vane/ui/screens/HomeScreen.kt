@@ -35,11 +35,11 @@ fun HomeScreen(
             ErrorBox(error = state.error ?: "", onDismiss = onClearError)
         }
 
-        LazyVerticalGrid(columns = GridCells.Fixed(2)) {
+        LazyVerticalGrid(columns = GridCells.Fixed(2), modifier = Modifier.padding(horizontal = 8.dp)) {
             items(state.habits) {
                 CountryCard(
                     country = it,
-                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp),
+                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 4.dp),
                     onClick = { onClickCountry(it.id) }
                 )
             }
