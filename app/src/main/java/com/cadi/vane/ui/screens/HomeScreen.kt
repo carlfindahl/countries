@@ -14,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.cadi.vane.data.model.CountryTopBarState
+import com.cadi.vane.data.model.LocalAppBarState
 import com.cadi.vane.features.CountryListViewModel
 import com.cadi.vane.ui.components.CountryCard
 import com.cadi.vane.ui.components.ErrorBox

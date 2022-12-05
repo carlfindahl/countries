@@ -7,13 +7,18 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.cadi.vane.data.model.CountryTopBarState
+import com.cadi.vane.data.model.LocalAppBarState
+import com.cadi.vane.data.model.rememberCountryTopBarState
 import com.cadi.vane.ui.navigation.BottomBarDestinations
 import com.cadi.vane.ui.components.VaneBottomBar
 import com.cadi.vane.ui.components.VaneTopBar
@@ -26,62 +31,72 @@ import com.google.accompanist.navigation.animation.composable
 
 @Composable
 fun VaneMainNavigation(navController: NavHostController) {
+    val appBarState = rememberCountryTopBarState()
+    CompositionLocalProvider(LocalAppBarState provides appBarState) {
 
-    Scaffold(
-        topBar = {
-            val backStack by navController.currentBackStackEntryAsState()
-            val title = backStack?.destination?.displayName ?: "Vane"
+        Scaffold(
+            topBar = {
+                when (val state = appBarState.state) {
 
-            VaneTopBar(
-                name = title,
-                message = "Look at the data about these countries!"
-            )
-        },
-        bottomBar = {
-            VaneBottomBar(containerColor = MaterialTheme.colorScheme.secondaryContainer) {
-                val backStack by navController.currentBackStackEntryAsState()
-                val currentDestination = backStack?.destination
+                    is CountryTopBarState.Style.Basic -> VaneTopBar(name = state.title, null)
 
-                BottomBarDestinations.bottomBarDestinations.forEach { destination ->
-                    val selected =
-                        currentDestination?.hierarchy?.any { it.route == destination.name } == true
+                    is CountryTopBarState.Style.BasicSlogan -> VaneTopBar(
+                        name = state.title,
+                        message = state.slogan
+                    )
 
-                    NavigationBarItem(
-                        selected = selected,
-                        onClick = {
-                            navController.navigate(destination.name) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        },
-                        icon = {
-                            Icon(imageVector = destination.getIcon(selected), null)
-                        })
+                    CountryTopBarState.Style.Hidden -> {}
                 }
-            }
-        }) {
-        AnimatedNavHost(
-            navController,
-            startDestination = BottomBarDestinations.Routes.COUNTRY_HOME,
-            enterTransition = { fadeIn() },
-            exitTransition = { fadeOut() },
-            modifier = Modifier.padding(it)
-        ) {
-            homeScreen { countryId ->
-                navController.navigateToCountryDetailsScreen(countryId)
-            }
+            },
+            bottomBar = {
+                VaneBottomBar(containerColor = MaterialTheme.colorScheme.secondaryContainer) {
+                    val backStack by navController.currentBackStackEntryAsState()
+                    val currentDestination = backStack?.destination
 
-            countryDetailsScreen { countryId ->
-                navController.navigateToCountryDetailsScreen(
-                    countryId
-                )
-            }
+                    BottomBarDestinations.bottomBarDestinations.forEach { destination ->
+                        val selected =
+                            currentDestination?.hierarchy?.any { it.route == destination.name } == true
 
-            composable(BottomBarDestinations.Routes.PROFILE) {
-                ProfileScreen()
+                        NavigationBarItem(
+                            selected = selected,
+                            onClick = {
+                                navController.navigate(destination.name) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            },
+                            icon = {
+                                Icon(imageVector = destination.getIcon(selected), null)
+                            })
+                    }
+                }
+            }) {
+            AnimatedNavHost(
+                navController,
+                startDestination = BottomBarDestinations.Routes.COUNTRY_HOME,
+                enterTransition = { fadeIn() },
+                exitTransition = { fadeOut() },
+                popEnterTransition = { fadeIn() },
+                popExitTransition = { fadeOut() },
+                modifier = Modifier.padding(it)
+            ) {
+                homeScreen { countryId ->
+                    navController.navigateToCountryDetailsScreen(countryId)
+                }
+
+                countryDetailsScreen { countryId ->
+                    navController.navigateToCountryDetailsScreen(
+                        countryId
+                    )
+                }
+
+                composable(BottomBarDestinations.Routes.PROFILE) {
+                    appBarState.state = CountryTopBarState.Style.Basic("Profile")
+                    ProfileScreen()
+                }
             }
         }
     }

@@ -24,7 +24,6 @@ object BottomBarDestinations {
 
     object Routes {
         const val COUNTRY_HOME = "country_home"
-        const val COUNTRY_ABOUT = "country_about"
         const val PROFILE = "profile"
     }
 

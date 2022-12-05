@@ -4,6 +4,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import com.cadi.vane.data.model.CountryTopBarState
+import com.cadi.vane.data.model.LocalAppBarState
 import com.cadi.vane.features.CountryDetailViewModel
 import com.google.accompanist.navigation.animation.composable
 import com.cadi.vane.features.CountryListViewModel
@@ -20,6 +22,8 @@ fun NavGraphBuilder.homeScreen(
         val viewModel: CountryListViewModel = koinViewModel()
         val uiState by viewModel.uiState.collectAsState()
 
+        LocalAppBarState.current.state = CountryTopBarState.Style.BasicSlogan("Home", "Click a country to see more info! :)")
+
         HomeScreen(
             state = uiState,
             onClearError = viewModel::clearError,
@@ -34,6 +38,10 @@ fun NavGraphBuilder.countryDetailsScreen(
     composable("country_details/{$countryIdArgument}") {
         val viewModel: CountryDetailViewModel = koinViewModel()
         val uiState by viewModel.viewState.collectAsState()
+
+        uiState.country?.let {
+            LocalAppBarState.current.state = CountryTopBarState.Style.BasicSlogan(it.name, it.capital)
+        }
 
         CountryDetailScreen(
             uiState = uiState,
