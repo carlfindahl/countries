@@ -7,10 +7,10 @@ import com.cadi.vane.data.model.HabitWorkout
 import retrofit2.http.GET
 
 interface HabitsApiService {
-    @GET("v1/habits")
+    @GET("v2/all")
     suspend fun getAllHabits(): List<Habit>
 
-    @GET("v1/habits/{habit}")
+    @GET("v2/habits/{habit}")
     suspend fun getHabit(habit: UInt): Habit
 }
 
