@@ -107,8 +107,8 @@ fun VaneMainNavigation(navController: NavHostController) {
                     )
                 }
 
-                composable(BottomBarDestinations.Routes.PROFILE) {
-                    appBarState.topBarState = CountryTopBarState.Style.Basic("Profile")
+                composable(BottomBarDestinations.Routes.INFO) {
+                    appBarState.topBarState = CountryTopBarState.Style.Basic("Info")
                     appBarState.bottomBarState = true
                     ProfileScreen()
                 }

@@ -2,9 +2,9 @@ package com.cadi.vane.ui.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.ui.graphics.vector.ImageVector
 
 object BottomBarDestinations {
@@ -24,7 +24,7 @@ object BottomBarDestinations {
 
     object Routes {
         const val COUNTRY_HOME = "country_home"
-        const val PROFILE = "profile"
+        const val INFO = "info"
     }
 
     val bottomBarDestinations = listOf(
@@ -34,9 +34,9 @@ object BottomBarDestinations {
             Icons.Filled.Home,
         ),
         BottomBarDestination(
-            Routes.PROFILE,
-            Icons.Outlined.Person,
-            Icons.Filled.Person,
+            Routes.INFO,
+            Icons.Outlined.Info,
+            Icons.Filled.Info,
         ),
     )
 }
