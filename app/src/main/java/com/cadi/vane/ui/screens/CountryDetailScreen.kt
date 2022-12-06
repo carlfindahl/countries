@@ -85,7 +85,7 @@ fun CountryDetailScreen(
                         )
                         CountryFactRow(
                             icon = Icons.Filled.Call,
-                            fact = "${country.borders?.size ?: 0} neigbors"
+                            fact = "${country.borders?.size ?: 0} neighbors"
                         )
                     }
                 }
