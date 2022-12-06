@@ -31,6 +31,7 @@ val networkModule = module {
             .baseUrl("https://restcountries.com/")
             .addConverterFactory(Json {
                 ignoreUnknownKeys = true
+                explicitNulls = false
             }.asConverterFactory("application/json".toMediaType()))
             .build()
     }

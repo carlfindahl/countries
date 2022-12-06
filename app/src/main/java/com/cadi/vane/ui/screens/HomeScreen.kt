@@ -40,7 +40,7 @@ fun HomeScreen(
                 CountryCard(
                     country = it,
                     modifier = Modifier.padding(horizontal = 4.dp, vertical = 4.dp),
-                    onClick = { onClickCountry(it.id) }
+                    onClick = { onClickCountry(it.name) }
                 )
             }
         }
