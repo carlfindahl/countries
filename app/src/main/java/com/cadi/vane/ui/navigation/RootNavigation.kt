@@ -6,9 +6,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import com.cadi.vane.data.model.CountryTopBarState
 import com.cadi.vane.data.model.LocalAppBarState
-import com.cadi.vane.features.CountryDetailViewModel
+import com.cadi.vane.viewmodels.CountryDetailViewModel
 import com.google.accompanist.navigation.animation.composable
-import com.cadi.vane.features.CountryListViewModel
+import com.cadi.vane.viewmodels.CountryListViewModel
 import com.cadi.vane.ui.screens.CountryDetailScreen
 import com.cadi.vane.ui.screens.HomeScreen
 import org.koin.androidx.compose.koinViewModel

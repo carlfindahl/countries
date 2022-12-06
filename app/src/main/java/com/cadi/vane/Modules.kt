@@ -6,10 +6,9 @@ import androidx.room.Room
 import com.cadi.vane.data.CountryNetworkRepository
 import com.cadi.vane.data.CountryRepository
 import com.cadi.vane.data.db.CountryDatabase
-import com.cadi.vane.features.CountryDetailViewModel
-import com.cadi.vane.features.CountryListViewModel
+import com.cadi.vane.viewmodels.CountryDetailViewModel
+import com.cadi.vane.viewmodels.CountryListViewModel
 import com.cadi.vane.network.CountryApiService
-import com.cadi.vane.network.MockCountryApiService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json

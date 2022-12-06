@@ -1,4 +1,4 @@
-package com.cadi.vane.features
+package com.cadi.vane.viewmodels
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,6 @@ import com.cadi.vane.data.CountryRepository
 import com.cadi.vane.data.model.Country
 import com.cadi.vane.network.util.doOnSuccess
 import com.cadi.vane.ui.navigation.countryIdArgument
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 

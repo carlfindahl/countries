@@ -1,4 +1,4 @@
-package com.cadi.vane.features
+package com.cadi.vane.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
