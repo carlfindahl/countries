@@ -26,7 +26,6 @@ fun InfoScreen() {
 
         Text(text = "APIs", style = MaterialTheme.typography.titleMedium)
         Text("https://restcountries.com", style = MaterialTheme.typography.bodyMedium)
-        Text("https://api.apify.com", style = MaterialTheme.typography.bodyMedium)
 
         Spacer(modifier = Modifier.height(16.dp))
 

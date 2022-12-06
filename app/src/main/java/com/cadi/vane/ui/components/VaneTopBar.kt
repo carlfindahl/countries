@@ -27,7 +27,6 @@ fun VaneTopBar(
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp),
-        shadowElevation = 4.dp,
         color = color,
     ) {
         Row(
