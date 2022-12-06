@@ -18,10 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.cadi.vane.R
 import com.cadi.vane.data.model.Country
 import com.cadi.vane.data.model.CountryFlags
 
@@ -39,7 +41,9 @@ fun CountryCard(
         onClick = onClick,
     ) {
         Box(
-            modifier = Modifier.fillMaxSize().aspectRatio(1.67f),
+            modifier = Modifier
+                .fillMaxSize()
+                .aspectRatio(1.67f),
             contentAlignment = Alignment.BottomCenter
         ) {
 
@@ -47,6 +51,7 @@ fun CountryCard(
                 model = country.flags.png,
                 contentDescription = "Flag",
                 contentScale = ContentScale.FillBounds,
+                placeholder = painterResource(id = R.drawable.good_duck),
                 modifier = Modifier.fillMaxSize()
             )
 
