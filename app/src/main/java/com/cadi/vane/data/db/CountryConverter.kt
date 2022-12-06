@@ -16,11 +16,11 @@ class CountryConverter {
 
     @TypeConverter
     fun fromListOfBorders(value: List<String>?): String? {
-        return value?.fold("") { acc: String, s: String -> "${acc},${s}" }
+        return value?.fold("") { acc: String, s: String -> "${s},${acc}" }
     }
 
     @TypeConverter
     fun toListOfBorders(value: String?): List<String>? {
-        return value?.split(",")
+        return value?.split(",")?.dropLast(1)
     }
 }

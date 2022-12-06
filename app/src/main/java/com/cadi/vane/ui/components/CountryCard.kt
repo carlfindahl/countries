@@ -80,6 +80,7 @@ fun PreviewHabitCard() {
                 id = "NOR",
                 name = "Norway",
                 demonym = "Norwegian",
+                subregion = "Europe",
                 capital = "Oslo",
                 population = 500000,
                 flags = CountryFlags(""),

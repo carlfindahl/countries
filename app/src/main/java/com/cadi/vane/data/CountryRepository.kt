@@ -34,16 +34,16 @@ class CountryNetworkRepository(
     }
 
     override suspend fun getCountry(id: String): NetResult<Country?, String> {
-        val fromCache = countryDatabase.countryDao().getByName(id)
+        val fromCache = countryDatabase.countryDao().getById(id)
 
-        return if (fromCache != null) {
-            NetResult.Success(fromCache)
-        } else {
+        return if (fromCache == null) {
             refreshCountriesFromNet().map { countries ->
                 countries.firstOrNull {
-                    it.name == id
+                    it.id == id
                 }
             }
+        } else {
+            NetResult.Success(fromCache)
         }
     }
 

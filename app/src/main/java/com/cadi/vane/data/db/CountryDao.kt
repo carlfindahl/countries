@@ -15,6 +15,9 @@ interface CountryDao {
     @Query("SELECT * FROM countries WHERE name LIKE :name LIMIT 1")
     suspend fun getByName(name: String) : Country?
 
+    @Query("SELECT * FROM countries WHERE id LIKE :name LIMIT 1")
+    suspend fun getById(name: String) : Country?
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(countries: List<Country>)
 }
