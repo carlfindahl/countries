@@ -6,4 +6,9 @@
     <string name="network_error_null">Data not available.</string>
     <string name="network_error_memory">Out of memory.</string>
 
+    <string name="info_apis_header">APIs</string>
+    <string name="info_apis">https://restcountries.com</string>
+    <string name="info_technologies_header">Technologies</string>
+    <string name="info_technologies">"Jetpack Compose, Retrofit, Flow, Coroutines, Coil, Koin, Room"</string>
+
 </resources>

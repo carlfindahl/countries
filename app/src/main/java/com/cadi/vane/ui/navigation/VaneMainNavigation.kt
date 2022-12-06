@@ -1,4 +1,4 @@
-package com.cadi.vane.ui
+package com.cadi.vane.ui.navigation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -21,12 +21,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.cadi.vane.data.model.CountryTopBarState
 import com.cadi.vane.data.model.LocalAppBarState
 import com.cadi.vane.data.model.rememberCountryTopBarState
-import com.cadi.vane.ui.navigation.BottomBarDestinations
 import com.cadi.vane.ui.components.VaneBottomBar
 import com.cadi.vane.ui.components.VaneTopBar
-import com.cadi.vane.ui.navigation.countryDetailsScreen
-import com.cadi.vane.ui.navigation.homeScreen
-import com.cadi.vane.ui.navigation.navigateToCountryDetailsScreen
 import com.cadi.vane.ui.screens.InfoScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable

@@ -8,7 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import com.cadi.vane.ui.VaneMainNavigation
+import com.cadi.vane.ui.navigation.VaneMainNavigation
 import com.cadi.vane.ui.theme.VaneTheme
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 

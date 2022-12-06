@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.cadi.vane.R
 
@@ -24,13 +25,13 @@ fun InfoScreen() {
         verticalArrangement = Arrangement.Center
     ) {
 
-        Text(text = "APIs", style = MaterialTheme.typography.titleMedium)
-        Text("https://restcountries.com", style = MaterialTheme.typography.bodyMedium)
+        Text(text = stringResource(id = R.string.info_apis_header), style = MaterialTheme.typography.titleMedium)
+        Text(stringResource(id = R.string.info_apis), style = MaterialTheme.typography.bodyMedium)
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(text = "Tech", style = MaterialTheme.typography.titleMedium)
-        Text("Jetpack Compose, Retrofit, Flow, Coroutines, Coil, Koin, Room", style = MaterialTheme.typography.bodyMedium)
+        Text(text = stringResource(id = R.string.info_technologies_header), style = MaterialTheme.typography.titleMedium)
+        Text(stringResource(id = R.string.info_technologies), style = MaterialTheme.typography.bodyMedium)
 
         Image(painter = painterResource(id = R.drawable.good_duck), contentDescription = "Duck",
         modifier = Modifier.size(256.dp))
