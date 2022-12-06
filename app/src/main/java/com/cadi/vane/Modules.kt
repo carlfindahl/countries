@@ -2,8 +2,10 @@
 
 package com.cadi.vane
 
+import androidx.room.Room
 import com.cadi.vane.data.CountryNetworkRepository
 import com.cadi.vane.data.CountryRepository
+import com.cadi.vane.data.db.CountryDatabase
 import com.cadi.vane.features.CountryDetailViewModel
 import com.cadi.vane.features.CountryListViewModel
 import com.cadi.vane.network.CountryApiService
@@ -19,7 +21,16 @@ import retrofit2.Retrofit
 import retrofit2.create
 
 val habitModule = module {
-    single<CountryRepository> { CountryNetworkRepository(habitsApiService = get()) }
+    single {
+        Room.databaseBuilder(
+            get(),
+            CountryDatabase::class.java,
+            "country_database"
+        ).build()
+    }
+
+    single<CountryRepository> { CountryNetworkRepository(habitsApiService = get(), countryDatabase = get()) }
+
     viewModel { CountryListViewModel(get()) }
     viewModel { CountryDetailViewModel(get(), get()) }
 }

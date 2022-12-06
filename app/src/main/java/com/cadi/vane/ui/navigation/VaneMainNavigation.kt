@@ -27,7 +27,7 @@ import com.cadi.vane.ui.components.VaneTopBar
 import com.cadi.vane.ui.navigation.countryDetailsScreen
 import com.cadi.vane.ui.navigation.homeScreen
 import com.cadi.vane.ui.navigation.navigateToCountryDetailsScreen
-import com.cadi.vane.ui.screens.ProfileScreen
+import com.cadi.vane.ui.screens.InfoScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 
@@ -110,7 +110,7 @@ fun VaneMainNavigation(navController: NavHostController) {
                 composable(BottomBarDestinations.Routes.INFO) {
                     appBarState.topBarState = CountryTopBarState.Style.Basic("Info")
                     appBarState.bottomBarState = true
-                    ProfileScreen()
+                    InfoScreen()
                 }
             }
         }

@@ -44,6 +44,15 @@ inline fun <T, E> NetResult<T, E>.doOnFailure(block: (E) -> Unit): NetResult<T, 
     return this
 }
 
+inline fun <T, Tʹ, E> NetResult<T, E>.map(f: (T) -> Tʹ): NetResult<Tʹ, E> =
+    flatMap { value -> NetResult.Success(f(value)) }
+
+inline fun <T, Tʹ, E> NetResult<T, E>.flatMap(f: (T) -> NetResult<Tʹ, E>): NetResult<Tʹ, E> =
+    when (this) {
+        is NetResult.Success<T> -> f(value)
+        is NetResult.Failure<E> -> this
+    }
+
 /**
  * Get when both types are the same
  */
