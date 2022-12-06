@@ -1,6 +1,6 @@
 # Countries
 
-List of countries and some stats. Experimental project.
+A simple app using Compose that displays a searchable list of countries and some information about them.
 
 | | |
 | ------------- | ------------- |
