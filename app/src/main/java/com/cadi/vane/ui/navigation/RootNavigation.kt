@@ -44,7 +44,7 @@ fun NavGraphBuilder.countryDetailsScreen(
 
         uiState.country?.let {
             LocalAppBarState.current.apply {
-                topBarState = CountryTopBarState.Style.BasicSlogan(it.name, "Capital: ${it.capital}")
+                topBarState = CountryTopBarState.Style.Basic(it.name)
                 bottomBarState = false
             }
         }
